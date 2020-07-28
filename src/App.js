@@ -42,6 +42,14 @@ class App extends React.Component {
     });
   };
 
+  collectionButton = () => {
+    this.setState({
+      mensPage: false,
+      womensPage: false,
+      collectionPage: true,
+    });
+  };
+
   render() {
     const { shoes, mensPage, womensPage, collectionPage } = this.state;
     const menShoes = shoes.filter((shoe) => shoe.gender === "men");
@@ -49,7 +57,11 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Banner menButton={this.menButton} womenButton={this.womenButton} />
+        <Banner
+          menButton={this.menButton}
+          womenButton={this.womenButton}
+          collectionButton={this.collectionButton}
+        />
         <FilterBar />
         {mensPage ? <ShoeContainer shoes={menShoes} /> : null}
         {womensPage ? <ShoeContainer shoes={womenShoes} /> : null}

@@ -132,13 +132,13 @@ table {
 .App {
   height: 100vh;
   display: grid;
-  grid-template-columns: .6fr repeat(6, minmax(auto, 10em)) 1fr;
+  grid-template-columns: 0.6fr repeat(6, minmax(auto, 10em)) 1fr;
   grid-template-rows: minmax(2.5em, auto) 1fr auto minmax(2em, auto);
 }
 
 .banner {
   background: black;
-  color:white;
+  color: white;
   grid-column: span 8;
   display: flex;
   justify-content: space-between;
@@ -152,9 +152,10 @@ table {
 .banner button {
   border: none;
   background: none;
-  color:white;
+  color: white;
   font-size: 18px;
   cursor: pointer;
+  outline: none;
 }
 
 .buttons {
@@ -170,7 +171,23 @@ table {
 .shoe-container {
   grid-column-start: 2;
   grid-column-end: 8;
-  background: lightblue;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+}
+
+.shoe-card {
+  width: 25em;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shoe-card img {
+  margin: .5rem;
+  width: 10.5em;
+  height: 7.5em;
 }
 
 .maybe-container {
@@ -182,4 +199,3 @@ table {
   grid-row-start: 4;
   grid-column: span 8;
 }
-
