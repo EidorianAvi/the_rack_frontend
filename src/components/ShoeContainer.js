@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const ShoeContainer = () => {
-    return (
-        <div className='shoe-container'>
-            
-        </div>
-    );
-}
+  return <div className="shoe-container"></div>;
+};
 
 export default ShoeContainer;

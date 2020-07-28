@@ -13,6 +13,7 @@ class App extends React.Component {
     shoes: [],
     mensPage: true,
     womensPage: false,
+    collectionPage: false,
   };
 
   componentDidMount = () => {
@@ -25,17 +26,34 @@ class App extends React.Component {
       );
   };
 
+  menButton = () => {
+    this.setState({
+      mensPage: true,
+      womensPage: false,
+      collectionPage: false,
+    });
+  };
+
+  womenButton = () => {
+    this.setState({
+      mensPage: false,
+      womensPage: true,
+      collectionPage: false,
+    });
+  };
+
   render() {
-    const { shoes, mensPage, womensPage } = this.state;
+    const { shoes, mensPage, womensPage, collectionPage } = this.state;
     const menShoes = shoes.filter((shoe) => shoe.gender === "men");
     const womenShoes = shoes.filter((shoe) => shoe.gender === "women");
 
     return (
       <div className="App">
-        <Banner />
+        <Banner menButton={this.menButton} womenButton={this.womenButton} />
         <FilterBar />
         {mensPage ? <ShoeContainer shoes={menShoes} /> : null}
         {womensPage ? <ShoeContainer shoes={womenShoes} /> : null}
+        {collectionPage ? <ShoeContainer /> : null}
         <MaybeContainer />
         <Footer />
       </div>
