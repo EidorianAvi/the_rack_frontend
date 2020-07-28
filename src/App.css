@@ -140,4 +140,46 @@ table {
   background: black;
   color:white;
   grid-column: span 8;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
+
+.banner h1 {
+  font-size: 26px;
+}
+
+.banner button {
+  border: none;
+  background: none;
+  color:white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.buttons {
+  width: 32vw;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.filter-bar {
+  background: blue;
+}
+
+.shoe-container {
+  grid-column-start: 2;
+  grid-column-end: 8;
+  background: lightblue;
+}
+
+.maybe-container {
+  background: yellow;
+}
+
+.footer {
+  background: orange;
+  grid-row-start: 4;
+  grid-column: span 8;
+}
+
