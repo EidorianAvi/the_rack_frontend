@@ -5,8 +5,9 @@ const ShoeCard = (props) => {
     <div className="shoe-card">
       <img src={props.image} alt="Oh no!" />
       <ul className="card-info">
-        <li>{props.name}</li>
-        <li>{props.retail_price}</li>
+        <li className="name">{props.name}</li>
+        <li className="price">${props.retail_price}</li>
+        <li className="brand">{props.brand.toUpperCase()}</li>
       </ul>
     </div>
   );

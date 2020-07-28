@@ -11,6 +11,8 @@ const shoesUrl = "http://localhost:4000/shoes";
 class App extends React.Component {
   state = {
     shoes: [],
+    filtered: [],
+    isFiltered: false,
     mensPage: true,
     womensPage: false,
     collectionPage: false,
@@ -29,6 +31,7 @@ class App extends React.Component {
   menButton = () => {
     this.setState({
       mensPage: true,
+      isFiltered: false,
       womensPage: false,
       collectionPage: false,
     });
@@ -38,6 +41,7 @@ class App extends React.Component {
     this.setState({
       mensPage: false,
       womensPage: true,
+      isFiltered: false,
       collectionPage: false,
     });
   };
@@ -46,14 +50,33 @@ class App extends React.Component {
     this.setState({
       mensPage: false,
       womensPage: false,
+      isFiltered: false,
       collectionPage: true,
     });
   };
 
+  brandFilter = (brand) => {
+    let filtered = this.state.shoes.filter((shoe) => shoe.brand === brand);
+    this.setState({
+      filtered: filtered,
+      isFiltered: true,
+    });
+  };
+
   render() {
-    const { shoes, mensPage, womensPage, collectionPage } = this.state;
+    const {
+      shoes,
+      filtered,
+      isFiltered,
+      mensPage,
+      womensPage,
+      collectionPage,
+    } = this.state;
+
     const menShoes = shoes.filter((shoe) => shoe.gender === "men");
     const womenShoes = shoes.filter((shoe) => shoe.gender === "women");
+    const menFiltered = filtered.filter((shoe) => shoe.gender === "men");
+    const womenFiltered = filtered.filter((shoe) => shoe.gender === "women");
 
     return (
       <div className="App">
@@ -62,10 +85,20 @@ class App extends React.Component {
           womenButton={this.womenButton}
           collectionButton={this.collectionButton}
         />
-        <FilterBar />
-        {mensPage ? <ShoeContainer shoes={menShoes} /> : null}
-        {womensPage ? <ShoeContainer shoes={womenShoes} /> : null}
-        {collectionPage ? <ShoeContainer /> : null}
+        <FilterBar brandFilter={this.brandFilter} />
+        {isFiltered ? (
+          <>
+            {mensPage ? <ShoeContainer shoes={menFiltered} /> : null}
+            {womensPage ? <ShoeContainer shoes={womenFiltered} /> : null}
+            {collectionPage ? <ShoeContainer /> : null}
+          </>
+        ) : (
+          <>
+            {mensPage ? <ShoeContainer shoes={menShoes} /> : null}
+            {womensPage ? <ShoeContainer shoes={womenShoes} /> : null}
+            {collectionPage ? <ShoeContainer /> : null}
+          </>
+        )}
         <MaybeContainer />
         <Footer />
       </div>

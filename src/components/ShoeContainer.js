@@ -15,3 +15,24 @@ const ShoeContainer = ({shoes}) => {
 };
 
 export default ShoeContainer;
+
+// class ShoeContainer extends React.Component {
+    
+//     state = {
+//         filtered: []
+//     }
+    
+//     renderShoes = () => {
+//         return this.props.shoes.map(shoe => <ShoeCard key={shoe.id} {...shoe}/>)
+//     }
+
+//     render() {
+//         return (
+//             <div className="shoe-container">
+//                 {this.renderShoes()}
+//             </div>
+//         );
+//     }
+// }
+
+// export default ShoeContainer;
