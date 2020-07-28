@@ -6,13 +6,13 @@ import ShoeContainer from "./components/ShoeContainer";
 import MaybeContainer from "./components/MaybeContainer";
 import Footer from "./components/Footer";
 
-
-
 const shoesUrl = "http://localhost:4000/shoes";
 
 class App extends React.Component {
   state = {
     shoes: [],
+    mensPage: true,
+    womensPage: false,
   };
 
   componentDidMount = () => {
@@ -26,14 +26,16 @@ class App extends React.Component {
   };
 
   render() {
-
-    const {shoes} = this.state
+    const { shoes, mensPage, womensPage } = this.state;
+    const menShoes = shoes.filter((shoe) => shoe.gender === "men");
+    const womenShoes = shoes.filter((shoe) => shoe.gender === "women");
 
     return (
       <div className="App">
         <Banner />
         <FilterBar />
-        <ShoeContainer {...shoes}/>
+        {mensPage ? <ShoeContainer shoes={menShoes} /> : null}
+        {womensPage ? <ShoeContainer shoes={womenShoes} /> : null}
         <MaybeContainer />
         <Footer />
       </div>
