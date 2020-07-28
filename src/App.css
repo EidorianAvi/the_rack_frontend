@@ -194,11 +194,30 @@ table {
   grid-column-end: 8;
   display: flex;
   flex-flow: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 .shoe-card {
   width: 25em;
+  height: 9em;
   font-size: 14px;
   margin: .7rem;
   display: flex;
@@ -248,7 +267,7 @@ table {
 }
 
 .footer {
-  background: orange;
+  background: grey;
   grid-row-start: 4;
   grid-column: span 8;
 }

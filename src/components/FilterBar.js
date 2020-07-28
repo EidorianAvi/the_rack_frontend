@@ -1,13 +1,20 @@
 import React from "react";
 
-const FilterBar = ({ brandFilter }) => {
+const FilterBar = ({ brandFilter, allButton }) => {
+  const handleAll = (event) => {
+    allButton();
+  }
+
   const handleClick = (event) => {
     brandFilter(event.target.value);
   };
 
+
+
   return (
     <div className="filter-bar">
       <h2>Brands</h2>
+      <button onClick={handleAll}>All</button>
       <button onClick={handleClick} value="adidas">
         Adidas
       </button>

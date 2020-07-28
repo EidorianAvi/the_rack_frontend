@@ -55,8 +55,22 @@ class App extends React.Component {
     });
   };
 
+  allButton = () => {
+    this.setState({
+      isFiltered: false,
+    });
+  };
+
   brandFilter = (brand) => {
     let filtered = this.state.shoes.filter((shoe) => shoe.brand === brand);
+    this.setState({
+      filtered: filtered,
+      isFiltered: true,
+    });
+  };
+
+  priceFilter = (price) => {
+    let filtered = this.state.shoes.filter((shoe) => shoe.price <= price);
     this.setState({
       filtered: filtered,
       isFiltered: true,
@@ -85,7 +99,11 @@ class App extends React.Component {
           womenButton={this.womenButton}
           collectionButton={this.collectionButton}
         />
-        <FilterBar brandFilter={this.brandFilter} />
+        <FilterBar
+          allButton={this.allButton}
+          brandFilter={this.brandFilter}
+          priceFilter={this.priceFilter}
+        />
         {isFiltered ? (
           <>
             {mensPage ? <ShoeContainer shoes={menFiltered} /> : null}
