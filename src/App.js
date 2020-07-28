@@ -70,11 +70,22 @@ class App extends React.Component {
   };
 
   priceFilter = (price) => {
-    let filtered = this.state.shoes.filter((shoe) => shoe.price <= price);
-    this.setState({
-      filtered: filtered,
-      isFiltered: true,
-    });
+    let lowPrice = this.state.shoes.filter((shoe) => shoe.retail_price <= 100);
+    let midPrice = this.state.shoes.filter(
+      (shoe) => shoe.retail_price > 100 && shoe.retail_price <= 200
+    );
+    let highPrice = this.state.shoes.filter((shoe) => shoe.retail_price > 200);
+    switch (price) {
+      case "low":
+        this.setState({ filtered: lowPrice, isFiltered: true });
+        break;
+      case "mid":
+        this.setState({ filtered: midPrice, isFiltered: true });
+        break;
+      case "high":
+        this.setState({ filtered: highPrice, isFiltered: true });
+        break;
+    }
   };
 
   render() {

@@ -1,48 +1,56 @@
 import React from "react";
 
-const FilterBar = ({ brandFilter, allButton }) => {
+const FilterBar = ({ allButton, brandFilter, priceFilter }) => {
   const handleAll = (event) => {
     allButton();
-  }
+  };
 
-  const handleClick = (event) => {
+  const handleBrand = (event) => {
     brandFilter(event.target.value);
   };
 
-
+  const handlePrice = (event) => {
+    priceFilter(event.target.value);
+  };
 
   return (
     <div className="filter-bar">
       <h2>Brands</h2>
       <button onClick={handleAll}>All</button>
-      <button onClick={handleClick} value="adidas">
+      <button onClick={handleBrand} value="adidas">
         Adidas
       </button>
-      <button onClick={handleClick} value="ASICS">
+      <button onClick={handleBrand} value="ASICS">
         ASICS
       </button>
-      <button onClick={handleClick} value="Jordan">
+      <button onClick={handleBrand} value="Jordan">
         Jordan
       </button>
-      <button onClick={handleClick} value="New Balance">
+      <button onClick={handleBrand} value="New Balance">
         New Balance
       </button>
-      <button onClick={handleClick} value="Nike">
+      <button onClick={handleBrand} value="Nike">
         Nike
       </button>
-      <button onClick={handleClick} value="Puma">
+      <button onClick={handleBrand} value="Puma">
         Puma
       </button>
-      <button onClick={handleClick} value="Reebok">
+      <button onClick={handleBrand} value="Reebok">
         Reebok
       </button>
-      <button onClick={handleClick} value="Under Armour">
+      <button onClick={handleBrand} value="Under Armour">
         Under Armour
       </button>
       <h2>Price Range</h2>
-      <button>0-100</button>
-      <button>100-200</button>
-      <button>200+</button>
+      <button onClick={handlePrice} value="low">
+        0-100
+      </button>
+      <button onClick={handlePrice} value="mid">
+        100-200
+      </button>
+      <button onClick={handlePrice} value="high">
+        200+
+      </button>
     </div>
   );
 };
