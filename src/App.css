@@ -182,11 +182,12 @@ table {
 }
 
 .filter-bar button {
-  margin: .4rem;
+  margin: 0.4rem;
   font-size: 12px;
   background: none;
   border: none;
   cursor: pointer;
+  outline: none;
 }
 
 .shoe-container {
@@ -204,22 +205,22 @@ table {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 .shoe-card {
   width: 25em;
   height: 9em;
   font-size: 14px;
-  margin: .7rem;
+  margin: 0.7rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -229,12 +230,12 @@ table {
 }
 
 .shoe-card img {
-  margin: .5rem;
+  margin: 0.5rem;
   width: 10.5em;
   height: 7.5em;
 }
 
-.card-info{
+.card-info {
   width: 100%;
   height: 90%;
   display: flex;
@@ -254,7 +255,7 @@ table {
 }
 
 .brand {
-  margin: .3rem;
+  margin: 0.3rem;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -262,8 +263,8 @@ table {
   color: grey;
 }
 
-
 .maybe-button {
+  outline: none;
   position: relative;
   right: 1rem;
   top: 1rem;
@@ -277,10 +278,10 @@ table {
   box-shadow: 2px 2px 2px lightgrey;
   border-radius: 3px;
   opacity: 0;
-  transition: opacity .4s ease-in;
+  transition: opacity 0.4s ease-in;
 }
-  
-.shoe-card:hover button  {
+
+.shoe-card:hover button {
   opacity: 1;
 }
 
@@ -293,7 +294,6 @@ table {
   width: 100%;
 }
 
-
 .diagonal {
   display: flex;
   flex-direction: column;
@@ -305,7 +305,7 @@ table {
 }
 
 .diagonal h2 {
-  margin: .5em .5em 0 0;
+  margin: 0.5em 0.5em 0 0;
   color: white;
   font-size: 30px;
 }
@@ -316,17 +316,109 @@ table {
   margin: 0 1em 0 0;
 }
 
+.maybe-card {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  width: 17em;
+}
 
 .maybe-card img {
-  margin: .5rem;
+  margin-bottom: 0.5rem;
   width: 10.5em;
   height: 7.5em;
-  /* Filter: FlipH; */
+}
+
+.maybe-card button {
+  font-weight: 700;
+  font-size: 22px;
+  color: orangered;
+  width: 85%;
+  text-align: right;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+  /* opacity: 0; */
+}
+
+.maybe-card:hover button {
+  opacity: 1;
+}
+
+.select {
+  width: 100%;
+  background: lightgrey;
+  display: flex;
+  justify-content: center;
+}
+
+.select:hover {
+  background: orangered;
+}
+
+.select button {
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+}
+
+.select-page {
+  height: 90%;
+  grid-column-start: 2;
+  grid-column-end: 8;
+  border: black 1px solid;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.select-options {
+  width: 100%;
+  height: 20%;
+  /* background: white; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  border-bottom: 1px solid black;
+}
+
+.select-options p {
+  font-size: 26px;
+  margin-bottom: 1.5rem;
+  /* width: 100%; */
+  /* height: 100%; */
+  /* background: grey; */
+}
+
+.select-option img {
+  width: 10.5em;
+  height: 7.5em;
 }
 
 .footer {
-  background: lightgrey;
+  background: black;
   grid-row-start: 4;
   grid-column: span 8;
+  color: white;
+  display: flex;
+
 }
 
+.footer button {
+  cursor: pointer;
+  outline: none;
+  background: none;
+  color: lightgrey;
+  border: none;
+  text-decoration: underline;
+  margin-right: 3rem;
+}

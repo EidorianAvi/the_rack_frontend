@@ -5,6 +5,7 @@ import FilterBar from "./components/FilterBar";
 import ShoeContainer from "./components/ShoeContainer";
 import MaybeContainer from "./components/MaybeContainer";
 import Footer from "./components/Footer";
+import SelectPage from "./components/SelectPage";
 
 const shoesUrl = "http://localhost:4000/shoes";
 
@@ -13,10 +14,14 @@ class App extends React.Component {
     shoes: [],
     filtered: [],
     possibles: [],
+    currentView: {},
+    filterBar: true,
     isFiltered: false,
     mensPage: true,
     womensPage: false,
     collectionPage: false,
+    selectPage: false,
+    maybeBar: true,
   };
 
   componentDidMount = () => {
@@ -35,6 +40,9 @@ class App extends React.Component {
       isFiltered: false,
       womensPage: false,
       collectionPage: false,
+      filterBar: true,
+      maybeBar: true,
+      selectPage: false,
     });
   };
 
@@ -44,6 +52,9 @@ class App extends React.Component {
       womensPage: true,
       isFiltered: false,
       collectionPage: false,
+      filterBar: true,
+      maybeBar: true,
+      selectPage: false,
     });
   };
 
@@ -53,6 +64,9 @@ class App extends React.Component {
       womensPage: false,
       isFiltered: false,
       collectionPage: true,
+      filterBar: true,
+      maybeBar: true,
+      selectPage: false,
     });
   };
 
@@ -107,6 +121,18 @@ class App extends React.Component {
     this.setState({ possibles });
   };
 
+  renderSelectPage = () => {
+    this.setState({
+      selectPage: !this.state.selectPage,
+      filterBar: !this.state.filterBar,
+      maybeBar: !this.state.maybeBar,
+      mensPage: false,
+      womensPage: false,
+    });
+  };
+
+  selectCurrentView = () => {};
+
   render() {
     const {
       shoes,
@@ -116,6 +142,10 @@ class App extends React.Component {
       mensPage,
       womensPage,
       collectionPage,
+      selectPage,
+      filterBar,
+      maybeBar,
+      currentView,
     } = this.state;
 
     const menShoes = shoes.filter((shoe) => shoe.gender === "men");
@@ -130,11 +160,20 @@ class App extends React.Component {
           womenButton={this.womenButton}
           collectionButton={this.collectionButton}
         />
-        <FilterBar
-          allButton={this.allButton}
-          brandFilter={this.brandFilter}
-          priceFilter={this.priceFilter}
-        />
+        {selectPage ? (
+          <SelectPage
+            shoes={possibles}
+            currentView={currentView}
+            selectCurrentView={this.selectCurrentView}
+          />
+        ) : null}
+        {filterBar ? (
+          <FilterBar
+            allButton={this.allButton}
+            brandFilter={this.brandFilter}
+            priceFilter={this.priceFilter}
+          />
+        ) : null}
         {isFiltered ? (
           <>
             {mensPage ? (
@@ -168,10 +207,13 @@ class App extends React.Component {
             {collectionPage ? <ShoeContainer /> : null}
           </>
         )}
-        <MaybeContainer
-          shoes={possibles}
-          removeFromPossibles={this.removeFromPossibles}
-        />
+        {maybeBar ? (
+          <MaybeContainer
+            shoes={possibles}
+            removeFromPossibles={this.removeFromPossibles}
+            renderSelectPage={this.renderSelectPage}
+          />
+        ) : null}
         <Footer />
       </div>
     );

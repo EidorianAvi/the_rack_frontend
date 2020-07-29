@@ -9,8 +9,8 @@ const MaybeCard = (props) => {
     
     return (
         <div className="maybe-card">
-            <img src={props.image} alt="Oops!"/>
             <button onClick={handleClick}>x</button>
+            <img src={props.image} alt="Oops!"/>
         </div>
     );
 }
