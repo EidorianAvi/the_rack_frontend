@@ -12,6 +12,7 @@ class App extends React.Component {
   state = {
     shoes: [],
     filtered: [],
+    possibles: [],
     isFiltered: false,
     mensPage: true,
     womensPage: false,
@@ -88,10 +89,29 @@ class App extends React.Component {
     }
   };
 
+  addToPossibles = (shoe) => {
+    if (
+      this.state.possibles.length < 3 &&
+      !this.state.possibles.find((possible) => possible.id === shoe.id)
+    ) {
+      this.setState({
+        possibles: [...this.state.possibles, shoe],
+      });
+    }
+  };
+
+  removeFromPossibles = (shoe) => {
+    let possibles = this.state.possibles.filter(
+      (possible) => possible.id !== shoe.id
+    );
+    this.setState({ possibles });
+  };
+
   render() {
     const {
       shoes,
       filtered,
+      possibles,
       isFiltered,
       mensPage,
       womensPage,
@@ -117,18 +137,41 @@ class App extends React.Component {
         />
         {isFiltered ? (
           <>
-            {mensPage ? <ShoeContainer shoes={menFiltered} /> : null}
-            {womensPage ? <ShoeContainer shoes={womenFiltered} /> : null}
+            {mensPage ? (
+              <ShoeContainer
+                shoes={menFiltered}
+                addToPossibles={this.addToPossibles}
+              />
+            ) : null}
+            {womensPage ? (
+              <ShoeContainer
+                shoes={womenFiltered}
+                addToPossibles={this.addToPossibles}
+              />
+            ) : null}
             {collectionPage ? <ShoeContainer /> : null}
           </>
         ) : (
           <>
-            {mensPage ? <ShoeContainer shoes={menShoes} /> : null}
-            {womensPage ? <ShoeContainer shoes={womenShoes} /> : null}
+            {mensPage ? (
+              <ShoeContainer
+                shoes={menShoes}
+                addToPossibles={this.addToPossibles}
+              />
+            ) : null}
+            {womensPage ? (
+              <ShoeContainer
+                shoes={womenShoes}
+                addToPossibles={this.addToPossibles}
+              />
+            ) : null}
             {collectionPage ? <ShoeContainer /> : null}
           </>
         )}
-        <MaybeContainer />
+        <MaybeContainer
+          shoes={possibles}
+          removeFromPossibles={this.removeFromPossibles}
+        />
         <Footer />
       </div>
     );

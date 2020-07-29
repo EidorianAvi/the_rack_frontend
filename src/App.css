@@ -262,12 +262,71 @@ table {
   color: grey;
 }
 
+
+.maybe-button {
+  position: relative;
+  right: 1rem;
+  top: 1rem;
+  font-size: 20px;
+  color: white;
+  background: orangered;
+  border: none;
+  width: 4rem;
+  height: 2rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px lightgrey;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity .4s ease-in;
+}
+  
+.shoe-card:hover button  {
+  opacity: 1;
+}
+
 .maybe-container {
-  background: lightgrey;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+
+.diagonal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: grey;
+  width: 100%;
+  height: 15%;
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 40%);
+}
+
+.diagonal h2 {
+  margin: .5em .5em 0 0;
+  color: white;
+  font-size: 30px;
+}
+
+.diagonal p {
+  font-size: 14px;
+  color: white;
+  margin: 0 1em 0 0;
+}
+
+
+.maybe-card img {
+  margin: .5rem;
+  width: 10.5em;
+  height: 7.5em;
+  /* Filter: FlipH; */
 }
 
 .footer {
-  background: grey;
+  background: lightgrey;
   grid-row-start: 4;
   grid-column: span 8;
 }
+

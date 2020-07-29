@@ -1,10 +1,10 @@
 import React from "react";
 import ShoeCard from "./ShoeCard";
 
-const ShoeContainer = ({shoes}) => {
+const ShoeContainer = ({shoes, addToPossibles}) => {
 
     const renderShoes = () => {
-        return shoes.map(shoe => <ShoeCard key={shoe.id} {...shoe} />)
+        return shoes.map(shoe => <ShoeCard key={shoe.id} {...shoe} addToPossibles={addToPossibles} />)
     }
 
     return(
@@ -15,24 +15,3 @@ const ShoeContainer = ({shoes}) => {
 };
 
 export default ShoeContainer;
-
-// class ShoeContainer extends React.Component {
-    
-//     state = {
-//         filtered: []
-//     }
-    
-//     renderShoes = () => {
-//         return this.props.shoes.map(shoe => <ShoeCard key={shoe.id} {...shoe}/>)
-//     }
-
-//     render() {
-//         return (
-//             <div className="shoe-container">
-//                 {this.renderShoes()}
-//             </div>
-//         );
-//     }
-// }
-
-// export default ShoeContainer;
