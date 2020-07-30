@@ -1,9 +1,14 @@
 import React from 'react';
 
 const SelectOption = (props) => {
+    
+    const handleClick = (event) => {
+        props.selectCurrentView(props);
+    }
+    
     return (
         <div className='select-option'>
-            <img onClick={props.selectCurrentView} src={props.image} alt="Oh no!" />
+            <img onClick={handleClick} src={props.image} alt="Oh no!" />
         </div>
     );
 }

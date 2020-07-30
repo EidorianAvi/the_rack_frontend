@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CurrentView = (props) => {
+const CurrentView = ({currentView}) => {
     return (
-        <div>
-            <img src={props.image} alt="Oh no!"/>
+        <div className="current-view">
+            <img src={currentView.image}/>
         </div>
     );
 }

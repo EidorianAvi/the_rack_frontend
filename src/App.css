@@ -377,13 +377,14 @@ table {
   border: black 1px solid;
   border-radius: 8px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-self: center;
 }
 
 .select-options {
   width: 100%;
-  height: 20%;
+  height: 15%;
   /* background: white; */
   display: flex;
   justify-content: space-evenly;
@@ -394,14 +395,17 @@ table {
 .select-options p {
   font-size: 26px;
   margin-bottom: 1.5rem;
-  /* width: 100%; */
-  /* height: 100%; */
-  /* background: grey; */
 }
 
 .select-option img {
-  width: 10.5em;
-  height: 7.5em;
+  width: 7em;
+  height: 5em;
+  cursor: pointer;
+}
+
+.current-view img {
+  width: 31.5em;
+  height: 22.5em;
 }
 
 .footer {
@@ -410,7 +414,6 @@ table {
   grid-column: span 8;
   color: white;
   display: flex;
-
 }
 
 .footer button {

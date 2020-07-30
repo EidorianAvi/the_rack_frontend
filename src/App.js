@@ -110,6 +110,7 @@ class App extends React.Component {
     ) {
       this.setState({
         possibles: [...this.state.possibles, shoe],
+        currentView: shoe
       });
     }
   };
@@ -122,16 +123,23 @@ class App extends React.Component {
   };
 
   renderSelectPage = () => {
-    this.setState({
-      selectPage: !this.state.selectPage,
-      filterBar: !this.state.filterBar,
-      maybeBar: !this.state.maybeBar,
-      mensPage: false,
-      womensPage: false,
-    });
+    if (this.state.possibles === []) {
+      return null
+    } else {
+      this.setState({
+        selectPage: !this.state.selectPage,
+        filterBar: !this.state.filterBar,
+        maybeBar: !this.state.maybeBar,
+        mensPage: false,
+        womensPage: false,
+        currentView: this.state.possibles[0]
+      });
+    }
   };
 
-  selectCurrentView = () => {};
+  selectCurrentView = (shoe) => {
+    this.setState({currentView: shoe})
+  };
 
   render() {
     const {

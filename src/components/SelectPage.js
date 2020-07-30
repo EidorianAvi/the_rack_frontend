@@ -18,7 +18,7 @@ const SelectPage = ({shoes, currentView, selectCurrentView}) => {
                 {renderOptions()}
             </div>
             <div className="select-view">
-                <CurrentView currentView={currentView}/>
+                <CurrentView currentView={currentView} />
             </div>
         </div>
     );
