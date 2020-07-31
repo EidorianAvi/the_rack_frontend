@@ -538,9 +538,6 @@ table {
   margin-right: 3rem;
 }
 
-.error {
-  color: orange;
-}
 
 .collection-page {
   grid-column-start: 2;
@@ -552,4 +549,8 @@ table {
   margin-top: 1rem;
   font-size: 32px;
   border-bottom: 1px black solid;
+}
+
+.error-message {
+  color: red;
 }

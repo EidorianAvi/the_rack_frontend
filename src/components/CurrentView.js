@@ -1,6 +1,15 @@
 import React from "react";
 
-const CurrentView = ({ currentView }) => {
+const CurrentView = ({ currentView, addToCollection }) => {
+  
+  let token = localStorage.token
+  
+  console.log(token)
+
+  const handleClick = (event) => {
+    addToCollection(currentView.id);
+  }
+  
   return (
     <div className="current-view">
       <section>
@@ -14,10 +23,13 @@ const CurrentView = ({ currentView }) => {
             <li>{currentView.title}</li>
           </ul>
         </div>
-        <button>Add to Collection</button>
+        { localStorage.token  
+        ?  <button onClick={handleClick}>Add to Collection</button>
+        : <button>Must be logged in</button>
+        }
       </section>
       <div className="current-view-image">
-        <img src={currentView.image} />
+        <img src={currentView.image} alt="Oh no!"/>
       </div>
     </div>
   );

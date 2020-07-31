@@ -19,14 +19,12 @@ const SignUpForm = (props) => {
       : setPassword(target.value);
   };
 
-  const showAlerts = () => props.alerts.map((alert) => <p>{alert}</p>);
-
   return (
     <div className="login-section">
       <form onSubmit={handleSubmit} className="login-form">
         <h2>Create User</h2>
         <div className="login-input">
-          <label for='username'>Username</label>
+          <label for="username">Username</label>
           <input name="username" value={username} onChange={handleChange} />
         </div>
         <div className="login-input">
@@ -39,8 +37,8 @@ const SignUpForm = (props) => {
           />
         </div>
         <input type="submit" />
-        {props.alerts ? showAlerts() : null}
         <button onClick={props.loginButton}>Already a User?</button>
+        {props.alerts ? null : <p className="error-message">{props.alerts}</p>}
       </form>
     </div>
   );

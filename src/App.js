@@ -12,6 +12,7 @@ import LoginForm from "./components/LoginForm";
 
 const shoesUrl = "http://localhost:4000/shoes";
 
+
 class App extends React.Component {
   state = {
     shoes: [],
@@ -20,6 +21,7 @@ class App extends React.Component {
     filtered: [],
     possibles: [],
     currentView: {},
+    userCollection: [],
     filterBar: true,
     isFiltered: false,
     mensPage: true,
@@ -71,6 +73,7 @@ class App extends React.Component {
 
   collectionButton = () => {
     if (localStorage.token) {
+      this.renderCollection()
       this.setState({
         mensPage: false,
         womensPage: false,
@@ -132,6 +135,8 @@ class App extends React.Component {
       case "high":
         this.setState({ filtered: highPrice, isFiltered: true });
         break;
+      default: 
+        this.setState({ isFiltered: false})
     }
   };
 
@@ -221,14 +226,37 @@ class App extends React.Component {
         }
       })
       .then(() => this.collectionButton())
-  };
+  }
+
+
+
+  renderCollection = () => {
+    let id = this.state.user.id
+    console.log(id)
+    // fetch(`http:localhost:4000/users/`)
+  }
 
   logoutUser = () => {
     localStorage.removeItem("token");
     this.setState({
       user: {},
+      alerts: []
     });
+    this.menButton();
   };
+
+  addToCollection = (shoeID) => {
+    fetch('http://localhost:4000/user_shoes', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user_id: this.state.user.id,
+        shoe_id: shoeID
+      })
+    })
+  }
 
   render() {
     const {
@@ -268,6 +296,7 @@ class App extends React.Component {
             shoes={possibles}
             currentView={currentView}
             selectCurrentView={this.selectCurrentView}
+            addToCollection={this.addToCollection}
           />
         ) : null}
         {filterBar ? (
