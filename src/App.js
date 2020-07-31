@@ -51,6 +51,7 @@ class App extends React.Component {
       maybeBar: true,
       selectPage: false,
       loginForm: false,
+      signUpForm: false,
     });
   };
 
@@ -64,6 +65,7 @@ class App extends React.Component {
       maybeBar: true,
       selectPage: false,
       loginForm: false,
+      signUpForm: false,
     });
   };
 
@@ -78,6 +80,7 @@ class App extends React.Component {
         maybeBar: false,
         selectPage: false,
         loginForm: false,
+        signUpForm: false,
       });
     } else {
       this.loginButton();
@@ -191,7 +194,8 @@ class App extends React.Component {
             alerts: ["User successfully created!"],
           });
         }
-      });
+      })
+      .then(() => this.collectionButton())
   };
 
   loginUser = (user) => {
@@ -213,13 +217,17 @@ class App extends React.Component {
           this.setState({
             user: response.user,
             alerts: ["Welcome"],
-          });
+          })
         }
-      });
+      })
+      .then(() => this.collectionButton())
   };
 
   logoutUser = () => {
     localStorage.removeItem("token");
+    this.setState({
+      user: {},
+    });
   };
 
   render() {
@@ -237,6 +245,8 @@ class App extends React.Component {
       currentView,
       loginForm,
       signUpForm,
+      alerts,
+      user
     } = this.state;
 
     const menShoes = shoes.filter((shoe) => shoe.gender === "men");
@@ -296,17 +306,24 @@ class App extends React.Component {
                 addToPossibles={this.addToPossibles}
               />
             ) : null}
-            {collectionPage ? <CollectionPage /> : null}
+            {collectionPage ? <CollectionPage user={user} /> : null}
           </>
         )}
         {loginForm ? (
           <LoginForm
             signUpButton={this.signUpButton}
             loginUser={this.loginUser}
+            alerts={alerts}
+            collectionButton={this.collectionButton}
           />
         ) : null}
         {signUpForm ? (
-          <SignUpForm signUp={this.signUp} loginButton={this.loginButton} />
+          <SignUpForm
+            signUp={this.signUp}
+            loginButton={this.loginButton}
+            alerts={alerts}
+            collectionButton={this.collectionButton}
+          />
         ) : null}
         {maybeBar ? (
           <MaybeContainer

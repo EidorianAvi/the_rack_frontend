@@ -1,9 +1,11 @@
 import React from 'react';
 
 const CollectionPage = (props) => {
-    return localStorage.token
-    ? <h2>YES</h2>
-    : <h2>NO</h2>
+    return localStorage.token ? (
+        <div className="collection-page">
+            <h2>{props.user.username}'s Closet</h2>
+        </div>
+    ) : null
 }
 
 export default CollectionPage;
