@@ -24,7 +24,7 @@ const LoginForm = (props) => {
       <form onSubmit={handleSubmit} className="login-form">
         <h2>Please Login</h2>
         <div className="login-input">
-          <label for="username">Username</label>
+          <label htmlFor="username">Username</label>
           <input name="username" value={username} onChange={handleChange} />
         </div>
         <div className="login-input">

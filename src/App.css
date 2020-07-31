@@ -176,7 +176,7 @@ table {
 }
 
 .login-form {
-  height:60%;
+  height: 60%;
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -189,7 +189,7 @@ table {
   box-shadow: -2px 2px 2px lightgrey;
 }
 
-.login-form label { 
+.login-form label {
   color: white;
   font-size: 13px;
   text-align: left;
@@ -496,13 +496,13 @@ table {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width:100%;
-  height:50%;
+  width: 100%;
+  height: 50%;
 }
 
 .current-view button {
   outline: none;
-  background: none; 
+  background: none;
   border: none;
   font-size: 20px;
   font-weight: 600;
@@ -538,17 +538,55 @@ table {
   margin-right: 3rem;
 }
 
-
 .collection-page {
+  height: 100%;
+  width: 100%;
   grid-column-start: 2;
   grid-column-end: 8;
   grid-row-start: 2;
+  grid-row-end: 2;
 }
 
-.collection-page h2{
+.collection-header h2 {
   margin-top: 1rem;
   font-size: 32px;
   border-bottom: 1px black solid;
+}
+
+.collection-header {
+  height: 10%;
+  width: 60%;
+}
+
+.collection-body {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.collection-shoes {
+  display: flex;
+  flex-flow: wrap;
+  width: 40%;
+  height: 90%;
+  overflow-y: auto;
+}
+
+.collection-option img {
+  width: 7em;
+  height: 5em;
+  margin-left: 1.3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+
+}
+
+.collection-view {
+  width: 80%;
+  height: 100%;
 }
 
 .error-message {

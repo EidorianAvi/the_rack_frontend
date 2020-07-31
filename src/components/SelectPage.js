@@ -2,7 +2,7 @@ import React from "react";
 import SelectOption from "./SelectOption";
 import CurrentView from "./CurrentView";
 
-const SelectPage = ({ shoes, currentView, selectCurrentView, addToCollection }) => {
+const SelectPage = ({ shoes, currentView, selectCurrentView, addToCollection, collectionButton }) => {
   const renderOptions = () => {
     return shoes.map((shoe) => (
       <SelectOption
@@ -20,7 +20,7 @@ const SelectPage = ({ shoes, currentView, selectCurrentView, addToCollection }) 
         {renderOptions()}
       </div>
       <div className="select-view">
-        <CurrentView currentView={currentView} addToCollection={addToCollection} />
+        <CurrentView currentView={currentView} addToCollection={addToCollection} collectionButton={collectionButton}/>
       </div>
     </div>
   );

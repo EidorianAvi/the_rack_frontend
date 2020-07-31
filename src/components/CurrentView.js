@@ -1,13 +1,11 @@
 import React from "react";
 
-const CurrentView = ({ currentView, addToCollection }) => {
+const CurrentView = ({ currentView, addToCollection, collectionButton }) => {
   
-  let token = localStorage.token
-  
-  console.log(token)
 
   const handleClick = (event) => {
     addToCollection(currentView.id);
+    collectionButton();
   }
   
   return (
