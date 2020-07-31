@@ -3,7 +3,7 @@ import React from 'react';
 const CollectionOption = (props) => {
 
     const handleClick = (event) => {
-        // props.selectCurrentView(props);
+        props.selectCollectionView(props);
     }
 
     return (

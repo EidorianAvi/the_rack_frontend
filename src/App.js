@@ -20,6 +20,7 @@ class App extends React.Component {
     filtered: [],
     possibles: [],
     currentView: {},
+    collectionView: {},
     userCollection: [],
     filterBar: true,
     isFiltered: false,
@@ -184,6 +185,10 @@ class App extends React.Component {
     this.setState({ currentView: shoe });
   };
 
+  selectCollectionView = (shoe) => {
+    this.setState({collectionView: shoe})
+  };
+
   signUp = (user) => {
     fetch("http://localhost:4000/users", {
       method: "POST",
@@ -241,6 +246,7 @@ class App extends React.Component {
       .then((results) =>
         this.setState({
           userCollection: results.user.shoes,
+          collectionView: results.user.shoes[0]
         })
       );
   };
@@ -292,6 +298,7 @@ class App extends React.Component {
       alerts,
       user,
       userCollection,
+      collectionView
     } = this.state;
 
     const menShoes = shoes.filter((shoe) => shoe.gender === "men");
@@ -353,7 +360,14 @@ class App extends React.Component {
                 addToPossibles={this.addToPossibles}
               />
             ) : null}
-            {collectionPage ? <CollectionPage user={user} shoes={userCollection} /> : null}
+            {collectionPage ? (
+              <CollectionPage
+                user={user}
+                shoes={userCollection}
+                selectCollectionView={this.selectCollectionView}
+                collectionView={collectionView}
+              />
+            ) : null}
           </>
         )}
         {loginForm ? (

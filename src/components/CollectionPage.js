@@ -1,12 +1,18 @@
 import React from "react";
 import CollectionOption from "./CollectionOption";
+import CollectionView from "./CollectionView";
 
+const CollectionPage = ({ shoes, user, selectCollectionView, collectionView }) => {
+  const renderCollection = () => {
 
-const CollectionPage = ({shoes, user}) => {
-
-    const renderCollection = () => {
-        return shoes.map((shoe) => <CollectionOption key={shoe.id} {...shoe}/>)
-    }
+    return shoes.map((shoe) => (
+      <CollectionOption
+        key={shoe.id}
+        {...shoe}
+        selectCollectionView={selectCollectionView}
+      />
+    ));
+  };
 
   return localStorage.token ? (
     <div className="collection-page">
@@ -14,11 +20,9 @@ const CollectionPage = ({shoes, user}) => {
         <h2>{user.username}'s Closet</h2>
       </div>
       <div className="collection-body">
-        <div className="collection-shoes">
-          {renderCollection()}
-        </div>
+        <div className="collection-shoes">{renderCollection()}</div>
         <div className="collection-view">
-          <p>test</p>
+          <CollectionView collectionView={collectionView} />
         </div>
       </div>
     </div>
