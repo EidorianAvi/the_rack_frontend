@@ -526,6 +526,7 @@ table {
   grid-column: span 8;
   color: white;
   display: flex;
+  justify-content: center;
 }
 
 .footer button {
@@ -540,9 +541,9 @@ table {
 
 .collection-page {
   height: 100%;
-  width: 100%;
-  grid-column-start: 2;
-  grid-column-end: 8;
+  width: 90%;
+  grid-column-start: 1;
+  grid-column-end: 9;
   grid-row-start: 2;
   grid-row-end: 2;
 }
@@ -556,6 +557,7 @@ table {
 .collection-header {
   height: 10%;
   width: 60%;
+  margin-left: 7rem;
 }
 
 .collection-body {
@@ -570,9 +572,10 @@ table {
 .collection-shoes {
   display: flex;
   flex-flow: wrap;
-  width: 40%;
+  width: 30%;
   height: 90%;
   overflow-y: auto;
+  margin-left: 3rem;
 }
 
 .collection-option img {
@@ -585,9 +588,47 @@ table {
 }
 
 .collection-view {
-  width: 80%;
+  margin-left: 4rem;
+  width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
+
+.collection-view img {
+  width: 31.5em;
+  height: 22.5em;
+}
+
+
+.collection-view-info {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.collection-view-info h2{
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+
+.collection-view-info li {
+  margin-top: .5rem;
+}
+
+.collection-view-info button {
+  margin-top: 13rem;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
 
 .error-message {
   color: red;
