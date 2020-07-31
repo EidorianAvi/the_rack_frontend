@@ -164,10 +164,24 @@ table {
   justify-content: space-evenly;
 }
 
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-row-start: 2;
+  grid-column-start: 8;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  grid-row-start: 2;
+  grid-column-start: 8;
+}
 .filter-bar {
-  /* position: fixed;
-  top: 4rem;
-  left: 4rem; */
   background: white;
   display: flex;
   flex-direction: column;
@@ -472,3 +486,5 @@ table {
   text-decoration: underline;
   margin-right: 3rem;
 }
+
+

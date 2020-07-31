@@ -1,6 +1,11 @@
 import React from "react";
 
-const Banner = ({ menButton, womenButton, collectionButton }) => {
+const Banner = ({ menButton, womenButton, collectionButton, loginButton, logoutUser }) => {
+  
+  const handleClick = (event) => {
+      loginButton();
+  }
+  
   return (
     <div className="banner">
       <h1>theRack</h1>
@@ -8,7 +13,9 @@ const Banner = ({ menButton, womenButton, collectionButton }) => {
         <button onClick={menButton}>Men</button>
         <button onClick={womenButton}>Women</button>
         <button onClick={collectionButton}>Collection</button>
-        <button>Login</button>
+        {localStorage.token 
+        ? <button onClick={() => logoutUser()}>Logout</button>
+        : <button onClick={handleClick}>Login</button>}
       </div>
     </div>
   );

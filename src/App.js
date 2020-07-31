@@ -6,12 +6,17 @@ import ShoeContainer from "./components/ShoeContainer";
 import MaybeContainer from "./components/MaybeContainer";
 import Footer from "./components/Footer";
 import SelectPage from "./components/SelectPage";
+import SignUpForm from "./components/SignUpForm";
+import CollectionPage from "./components/CollectionPage";
+import LoginForm from "./components/LoginForm";
 
 const shoesUrl = "http://localhost:4000/shoes";
 
 class App extends React.Component {
   state = {
     shoes: [],
+    user: {},
+    alerts: [],
     filtered: [],
     possibles: [],
     currentView: {},
@@ -22,6 +27,8 @@ class App extends React.Component {
     collectionPage: false,
     selectPage: false,
     maybeBar: true,
+    loginForm: false,
+    signUpForm: false,
   };
 
   componentDidMount = () => {
@@ -43,6 +50,7 @@ class App extends React.Component {
       filterBar: true,
       maybeBar: true,
       selectPage: false,
+      loginForm: false,
     });
   };
 
@@ -55,18 +63,39 @@ class App extends React.Component {
       filterBar: true,
       maybeBar: true,
       selectPage: false,
+      loginForm: false,
     });
   };
 
   collectionButton = () => {
+    if (localStorage.token) {
+      this.setState({
+        mensPage: false,
+        womensPage: false,
+        isFiltered: false,
+        collectionPage: true,
+        filterBar: false,
+        maybeBar: false,
+        selectPage: false,
+        loginForm: false,
+      });
+    } else {
+      this.loginButton();
+    }
+  };
+
+  loginButton = () => {
     this.setState({
-      mensPage: false,
-      womensPage: false,
-      isFiltered: false,
-      collectionPage: true,
-      filterBar: true,
-      maybeBar: true,
-      selectPage: false,
+      loginForm: true,
+      maybeBar: false,
+      signUpForm: false,
+    });
+  };
+
+  signUpButton = () => {
+    this.setState({
+      loginForm: false,
+      signUpForm: true,
     });
   };
 
@@ -110,7 +139,7 @@ class App extends React.Component {
     ) {
       this.setState({
         possibles: [...this.state.possibles, shoe],
-        currentView: shoe
+        currentView: shoe,
       });
     }
   };
@@ -124,7 +153,7 @@ class App extends React.Component {
 
   renderSelectPage = () => {
     if (this.state.possibles === []) {
-      return null
+      return null;
     } else {
       this.setState({
         selectPage: !this.state.selectPage,
@@ -132,13 +161,65 @@ class App extends React.Component {
         maybeBar: !this.state.maybeBar,
         mensPage: false,
         womensPage: false,
-        currentView: this.state.possibles[0]
+        currentView: this.state.possibles[0],
       });
     }
   };
 
   selectCurrentView = (shoe) => {
-    this.setState({currentView: shoe})
+    this.setState({ currentView: shoe });
+  };
+
+  signUp = (user) => {
+    fetch("http://localhost:4000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.errors) {
+          this.setState({
+            alerts: response.errors,
+          });
+        } else {
+          localStorage.setItem("token", response.token);
+          this.setState({
+            user: response.user,
+            alerts: ["User successfully created!"],
+          });
+        }
+      });
+  };
+
+  loginUser = (user) => {
+    fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.errors) {
+          this.setState({
+            alerts: response.errors,
+          });
+        } else {
+          localStorage.setItem("token", response.token);
+          this.setState({
+            user: response.user,
+            alerts: ["Welcome"],
+          });
+        }
+      });
+  };
+
+  logoutUser = () => {
+    localStorage.removeItem("token");
   };
 
   render() {
@@ -154,6 +235,8 @@ class App extends React.Component {
       filterBar,
       maybeBar,
       currentView,
+      loginForm,
+      signUpForm,
     } = this.state;
 
     const menShoes = shoes.filter((shoe) => shoe.gender === "men");
@@ -167,6 +250,8 @@ class App extends React.Component {
           menButton={this.menButton}
           womenButton={this.womenButton}
           collectionButton={this.collectionButton}
+          loginButton={this.loginButton}
+          logoutUser={this.logoutUser}
         />
         {selectPage ? (
           <SelectPage
@@ -196,7 +281,6 @@ class App extends React.Component {
                 addToPossibles={this.addToPossibles}
               />
             ) : null}
-            {collectionPage ? <ShoeContainer /> : null}
           </>
         ) : (
           <>
@@ -212,9 +296,18 @@ class App extends React.Component {
                 addToPossibles={this.addToPossibles}
               />
             ) : null}
-            {collectionPage ? <ShoeContainer /> : null}
+            {collectionPage ? <CollectionPage /> : null}
           </>
         )}
+        {loginForm ? (
+          <LoginForm
+            signUpButton={this.signUpButton}
+            loginUser={this.loginUser}
+          />
+        ) : null}
+        {signUpForm ? (
+          <SignUpForm signUp={this.signUp} loginButton={this.loginButton} />
+        ) : null}
         {maybeBar ? (
           <MaybeContainer
             shoes={possibles}
