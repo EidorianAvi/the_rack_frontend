@@ -1,68 +1,78 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# the_rack
 
-## Available Scripts
+The rack is your tool to browsing a men and womens catalogue of shoes and narrow down your search.
 
-In the project directory, you can run:
+## Table of Contents
+* [General Info](#general-info)
+* [Inspiration](#inspiration)
+* [Demonstration Video](#demonstration-video)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Example Code](#example-code)
+* [Features](#features)
+* [Status](#status)
+* [Contact](#contact)
+* [License](#license)
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## General Info
+The Rack is a web application designed to peruse tennis shoes of many brands. The point of the application is to not only get you more detailed information on all the shoes but also to narrow down the search for the perfect shoe. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Inspiration 
+The inspiration for The Rack was due to both a love for shoes but also a difficulty in selecting the perfect pair.
 
-### `yarn test`
+## Demonstration Video
+[theRack Youtube Demonstation](https://youtu.be/5GngnwWPQiI)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies 
+* React - version 16.3.1
+* JavaScript - version 1.8.5
+* CSS - version 3
+* Ruby on Rails - version 6
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Example Code
+```JavaScript
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+  addToCollection = (shoeID) => {
+    let shoe = this.state.shoes.find((shoe) => shoeID === shoe.id);
+    console.log(shoe);
+    this.setState({
+      userCollection: [...this.state.userCollection, shoe],
+      possibles: [],
+    });
+    fetch("http://localhost:4000/user_shoes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: this.state.user.id,
+        shoe_id: shoeID,
+      }),
+    });
+  };
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features
+Current Features:
+* Browse men and womens sneaker catalogue
+* Select up to three shoes for favorites
+* Browse more detailed description of favorites and then add one to your collection
+* User sign in with personal collection
 
-### `yarn eject`
+Future Features:
+* Full access to the entire sneak API's selection with live API calls
+* More user customization
+* Ability to add your own shoes into the database or into users collection
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Status
+The application is fully functional and ready to be enjoyed at current status. Future updates and improvements are still a possibility for future renditions.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Contact
+Created by [Adrian Avila](https://www.linkedin.com/in/eidorianavi/).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+If you have any questions or comments feel free to reach out thank you for your time.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
